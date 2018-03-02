@@ -20,6 +20,11 @@ namespace BankLedger
             Console.WriteLine("Added User {0} to Userbase", Username);
         }
 
+        public bool UserExists(string userName){
+            bool UserInUserbase = Users.ContainsKey(userName);
+            return UserInUserbase;
+        }
+
         /*
         public User Lookup(){
 
