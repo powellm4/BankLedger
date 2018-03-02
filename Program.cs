@@ -24,7 +24,9 @@ sure they are included or available via via NuGet/npm/etc. Please use a temporar
 
 todo:
     create user class
-    store users in list
+    store users
+        dictionary
+            key: username, value : user
     enable user creation via command line
 
  */
@@ -43,6 +45,9 @@ namespace BankLedger
         {
             Console.WriteLine("Hello World!");
             User TestUser = new User("user1","password1");
+            Userbase Users = new Userbase();
+            Users.Add(TestUser);
+
         }
     }
 }
