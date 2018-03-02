@@ -1,0 +1,10 @@
+C:\Users\marshall.powell\Documents\BankLedger\bin\Debug\netcoreapp2.0\BankLedger.deps.json
+C:\Users\marshall.powell\Documents\BankLedger\bin\Debug\netcoreapp2.0\BankLedger.runtimeconfig.json
+C:\Users\marshall.powell\Documents\BankLedger\bin\Debug\netcoreapp2.0\BankLedger.runtimeconfig.dev.json
+C:\Users\marshall.powell\Documents\BankLedger\bin\Debug\netcoreapp2.0\BankLedger.dll
+C:\Users\marshall.powell\Documents\BankLedger\bin\Debug\netcoreapp2.0\BankLedger.pdb
+C:\Users\marshall.powell\Documents\BankLedger\obj\Debug\netcoreapp2.0\BankLedger.csproj.CoreCompileInputs.cache
+C:\Users\marshall.powell\Documents\BankLedger\obj\Debug\netcoreapp2.0\BankLedger.AssemblyInfoInputs.cache
+C:\Users\marshall.powell\Documents\BankLedger\obj\Debug\netcoreapp2.0\BankLedger.AssemblyInfo.cs
+C:\Users\marshall.powell\Documents\BankLedger\obj\Debug\netcoreapp2.0\BankLedger.dll
+C:\Users\marshall.powell\Documents\BankLedger\obj\Debug\netcoreapp2.0\BankLedger.pdb
