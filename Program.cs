@@ -28,6 +28,9 @@ todo:
         dictionary
             key: username, value : user
     enable user creation via command line
+    enable user login via command line
+    enable user account interaction via command line
+    enable exit sequence from steps
 
  */
 
@@ -43,11 +46,98 @@ namespace BankLedger
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            User TestUser = new User("user1","password1");
+            bool exit = false;
             Userbase Users = new Userbase();
-            Users.Add(TestUser);
+            while(!exit){
+                User user = RequestLogin(Users);
+                NavigateUser(user);
+            }
+
+            
 
         }
+
+
+
+
+        static User RequestLogin(Userbase users){
+            bool LoginComplete = false;
+            User user = null;
+            Console.WriteLine("Welcome! \nTo Login, Enter 1. \nTo Create an Account, Enter 2.");
+            while(!LoginComplete){
+                String Input = Console.ReadLine();
+                if (!String.IsNullOrEmpty(Input)){
+                    if(Input == "2"){
+                        users.CreateUser();
+                        user = Login(users);
+                        //LoginComplete=true;
+                    }else if(Input == "1"){
+                        user = Login(users);
+                    }else{
+                        Console.WriteLine("Please enter either 1 or 2 to continue");
+                    }
+                }
+                if(user!=null){
+                    LoginComplete=true;
+                }
+            }
+            return user;
+        }
+
+        static User Login(Userbase users){
+            bool LoginSuccess=false;
+            User user = RequestUser(users);
+            LoginSuccess =RequestPassword(user,users);
+            if (LoginSuccess){
+                return user;
+            }
+            else{
+                return null;
+            }
+        }
+
+        public static User RequestUser(Userbase users){
+            //bool LoginSuccess = false;
+            bool UserFound = false;
+            User User= null;
+            String Input;
+            Console.Write("Welcome to the login screen!\nEnter username:\n>");
+            while(!UserFound){
+                Input = Console.ReadLine();
+                if(!String.IsNullOrEmpty(Input)){
+                    UserFound = users.UserExists(Input);
+                    if(UserFound){
+                        User = users.GetUser(Input);
+                        //LoginSuccess = RequestPassword(User,users);
+                    }else{
+                        Console.Write("Username not found. Try Again:\n>");
+                    }
+                }else{
+                Console.WriteLine("Please enter valid username.");
+                }
+            }
+            return User;
+        }
+        public static bool RequestPassword(User user, Userbase users){
+            bool PasswordAccepted = false;
+            String Input;
+            while (!PasswordAccepted){
+                Console.Write("Enter password:\n>");
+                Input = Console.ReadLine();
+                if (users.ValidatePassword(user,Input)){
+                    PasswordAccepted=true;
+                    Console.WriteLine("Password Accepted");
+                }else{
+                    Console.WriteLine("Error: Password Incorrect");
+                }
+            }
+            return PasswordAccepted;
+        }
+
+        static void NavigateUser(User user){
+            
+        }
+
+       
     }
 }

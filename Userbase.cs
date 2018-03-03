@@ -14,7 +14,7 @@ namespace BankLedger
             
         }
 
-        public void Add(User user){
+        private void Add(User user){
             string Username = user.GetUserName();
             Users.Add(Username, user);
             Console.WriteLine("Added User {0} to Userbase", Username);
@@ -25,6 +25,64 @@ namespace BankLedger
             return UserInUserbase;
         }
 
+        public User GetUser(string username){
+            User user = Users[username];
+            return user;
+        }
+
+
+        public void CreateUser(){
+            User user;
+            String Username = CreateUserName();
+            String Password = CreatePassword();
+            user = new User(Username,Password);
+            this.Add(user);
+        }
+
+        private string CreateUserName(){
+            String Input;
+            String Username = null;
+            bool UsernameAccepted = false;
+            Console.WriteLine("Enter desired Username:");
+            while (!UsernameAccepted){
+                Input = Console.ReadLine();
+                if (!String.IsNullOrEmpty(Input)){
+                    if(!this.UserExists(Input)){
+                        Username = Input;
+                        UsernameAccepted=true;
+                        Console.WriteLine("Username {0} Accepted", Username);
+                    }else{
+                        Console.WriteLine("Error: Username {0} taken \n\n", Input);
+                    }
+                }else{
+                    Console.WriteLine("Error: Username cannot be blank. \n \nEnter desired Username:");
+                }
+            }
+            return Username;
+        }
+        private string CreatePassword(){
+            String Input;
+            String Password = null;
+            bool PasswordAccepted = false;
+            Console.WriteLine("Create Password:");
+            while (!PasswordAccepted){
+                Input = Console.ReadLine();
+                if (!String.IsNullOrEmpty(Input)){
+                    Password = Input;
+                    PasswordAccepted=true;
+                    Console.WriteLine("Password Accepted");
+                }else{
+                    Console.WriteLine("Error: Enter Valid Password");
+                }
+            }
+            return Password;
+        }
+
+        public bool ValidatePassword(User user, string password){
+            bool validated = false;
+            validated = user.GetPassword().Equals(password);
+            return validated;
+        }
         /*
         public User Lookup(){
 
