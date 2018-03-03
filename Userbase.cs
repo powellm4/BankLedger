@@ -43,8 +43,8 @@ namespace BankLedger
             String Input;
             String Username = null;
             bool UsernameAccepted = false;
-            Console.WriteLine("Enter desired Username:");
             while (!UsernameAccepted){
+                Console.WriteLine("Enter desired Username:");
                 Input = Console.ReadLine();
                 if (!String.IsNullOrEmpty(Input)){
                     if(!this.UserExists(Input)){
@@ -52,10 +52,10 @@ namespace BankLedger
                         UsernameAccepted=true;
                         Console.WriteLine("Username {0} Accepted", Username);
                     }else{
-                        Console.WriteLine("Error: Username {0} taken \n\n", Input);
+                        Console.WriteLine("Error: Username {0} taken \n", Input);
                     }
                 }else{
-                    Console.WriteLine("Error: Username cannot be blank. \n \nEnter desired Username:");
+                    Console.WriteLine("Error: Username cannot be blank.");
                 }
             }
             return Username;

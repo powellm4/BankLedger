@@ -50,7 +50,9 @@ namespace BankLedger
             Userbase Users = new Userbase();
             while(!exit){
                 User user = RequestLogin(Users);
-                NavigateUser(user);
+                    if(user!=null){
+                        NavigateUser(user);
+                    }
             }
 
             
@@ -63,8 +65,8 @@ namespace BankLedger
         static User RequestLogin(Userbase users){
             bool LoginComplete = false;
             User user = null;
-            Console.WriteLine("Welcome! \nTo Login, Enter 1. \nTo Create an Account, Enter 2.");
             while(!LoginComplete){
+                Console.WriteLine("Welcome! \nTo Login, Enter 1. \nTo Create an Account, Enter 2.");
                 String Input = Console.ReadLine();
                 if (!String.IsNullOrEmpty(Input)){
                     if(Input == "2"){
@@ -120,22 +122,41 @@ namespace BankLedger
         }
         public static bool RequestPassword(User user, Userbase users){
             bool PasswordAccepted = false;
+            bool Lockout = false;
             String Input;
-            while (!PasswordAccepted){
+            int AttemptsRemaining =3;
+            while ((!PasswordAccepted) && (!Lockout)){
                 Console.Write("Enter password:\n>");
                 Input = Console.ReadLine();
                 if (users.ValidatePassword(user,Input)){
                     PasswordAccepted=true;
                     Console.WriteLine("Password Accepted");
-                }else{
-                    Console.WriteLine("Error: Password Incorrect");
+                }else{                    
+                    AttemptsRemaining--;
+                    if(AttemptsRemaining==0){
+                        Lockout=true;
+                    }
+                    if(Lockout){
+                        Console.WriteLine("Password Incorrect, Returning to main screen");
+                    }else{
+                        Console.WriteLine("Error: Password Incorrect, Attempts Remaining: {0}",AttemptsRemaining);
+                    }                        
                 }
             }
             return PasswordAccepted;
         }
 
         static void NavigateUser(User user){
-            
+            String Input;
+            string OptionOne = "Record a deposit";
+            string OptionTwo = "Record a withdrawal";
+            string OptionThree = "Check your balance";
+            string OptionFour = "See your transaction history";
+            string OptionFive = "Logout";
+            Console.Write("What would you like to do? Enter 1-5.\n"+
+                            "1.{0}\n2.{1}\n3.{2}\n4.{3}\n5.{4}\n>",
+                            OptionOne,OptionTwo,OptionThree,OptionFour,OptionFive);
+            Input= Console.ReadLine();
         }
 
        
