@@ -17,7 +17,7 @@ namespace BankLedger
         private void Add(User user){
             string Username = user.GetUserName();
             Users.Add(Username, user);
-            Console.WriteLine("Added User {0} to Userbase", Username);
+            Console.WriteLine("--------------\nAdded User {0} to Userbase", Username);
         }
 
         public bool UserExists(string userName){

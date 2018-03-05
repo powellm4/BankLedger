@@ -16,7 +16,7 @@ namespace BankLedger
             this.Password = password;
             this.Balance = 0.00;
             this.TransactionHistory  = new ArrayList();
-            Console.WriteLine("Created new User with Username:{0}, Password: {1}", this.Username,this.Password);
+            Console.WriteLine("--------------\nCreated new User with Username:{0}, Password: {1}", this.Username,this.Password);
         }
 
         public string GetUserName(){
@@ -34,7 +34,7 @@ namespace BankLedger
         public Double MakeDeposit(Double amount){
             this.Balance += amount;
             this.UpdateTransactionHistory("Deposit", amount);
-            Console.WriteLine("You made a deposit of $"+ String.Format("{0:.00}",amount));
+            Console.WriteLine("--------------\nYou made a deposit of $"+ String.Format("{0:.00}",amount));
             return this.Balance;
         }
 
@@ -42,6 +42,7 @@ namespace BankLedger
             if (this.Balance-amount>=0.00){
                 Balance = Balance-amount;
                 this.UpdateTransactionHistory("Withdrawal", amount);
+                Console.WriteLine("--------------\nYou made a withdrawal of $"+ String.Format("{0:.00}",amount));
             }else{
                 Console.WriteLine("Error: Insufficient funds, withdrawal cancelled.");
             }
@@ -66,7 +67,7 @@ namespace BankLedger
 
         public void CheckBalance(){
             String FormattedBalance = string.Format("{0:0.00}",this.Balance);
-            Console.WriteLine("Current Balance: ${0}",FormattedBalance);
+            Console.WriteLine("---------------\nCurrent Balance: ${0}",FormattedBalance);
         }
 
 
