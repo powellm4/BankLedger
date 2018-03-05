@@ -1,71 +1,13 @@
-﻿/*
-You have been tasked with writing the world’s greatest banking ledger. Please code a solution
-that can perform the following workflows through a console application (accessed via the 
-command line):
-
--Create a new account
--Login
--Record a deposit
--Record a withdrawal
--Check balance
--See transaction history
--Log out
-
-For additional credit, you may implement this through a web page. They don’t have to run at 
-the same time, but if you would like to do that, feel free.
-
-C# is preferred but not required. Use whatever frameworks/libraries you wish, and just make
-sure they are included or available via via NuGet/npm/etc. Please use a temporary memory store
-(local cache) instead of creating an actual database, and don't spend much time on the UI
-(unless you love doing that).
-
-
-
-
-todo:
-    create user class
-    store users
-        dictionary
-            key: username, value : user
-    enable user creation via command line
-    enable user login via command line
-    enable user account interaction via command line
-    enable exit sequence from steps
-
- */
-
-
-
-
-
 using System;
 
 namespace BankLedger
 {
-    class Program
+    class LoginScreen
     {
-        static void Main(string[] args)
-        {
-            bool exit = false;
-            Userbase Users = new Userbase();
-            LoginScreen LoginScreen = new LoginScreen();
-            UserMenu UserMenu;
-            while(!exit){
-                User user = LoginScreen.RequestLogin(Users);
-                    if(user!=null){
-                        UserMenu = new UserMenu(user);
-                        user = UserMenu.Navigate();
-                    }
-            }
-
-            
+        public LoginScreen(){
 
         }
-
-
-
-        /*
-        static User RequestLogin(Userbase users){
+        public User RequestLogin(Userbase users){
             bool LoginComplete = false;
             User user = null;
             while(!LoginComplete){
@@ -89,7 +31,7 @@ namespace BankLedger
             return user;
         }
 
-        static User Login(Userbase users){
+        private User Login(Userbase users){
             bool LoginSuccess=false;
             User user = RequestUser(users);
             LoginSuccess =RequestPassword(user,users);
@@ -101,7 +43,7 @@ namespace BankLedger
             }
         }
 
-        public static User RequestUser(Userbase users){
+        private  User RequestUser(Userbase users){
             //bool LoginSuccess = false;
             bool UserFound = false;
             User User= null;
@@ -123,7 +65,7 @@ namespace BankLedger
             }
             return User;
         }
-        public static bool RequestPassword(User user, Userbase users){
+        private bool RequestPassword(User user, Userbase users){
             bool PasswordAccepted = false;
             bool Lockout = false;
             String Input;
@@ -148,10 +90,6 @@ namespace BankLedger
             }
             return PasswordAccepted;
         }
-        */
 
-        
-
-       
     }
 }
