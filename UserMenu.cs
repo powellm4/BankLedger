@@ -1,3 +1,9 @@
+/*
+    UserMenu
+    A class that provides the navigation interface for a user once the user is logged in.
+
+*/
+
 using System;
 
 namespace BankLedger
@@ -5,9 +11,18 @@ namespace BankLedger
     class UserMenu
     {
         private User User;
+        
+        /*UserMenu Constructor
+         */
         public UserMenu(User user){
             this.User = user;
         }
+
+        /*
+        Navigate()
+        Enables Command Line interaction between the user and his/her account via 
+        a number selection.
+         */
         public User Navigate(){
             String Input;
             bool LoggedIn = true;
@@ -38,7 +53,7 @@ namespace BankLedger
                         this.User.DisplayTransactionHistory();
                         break;
                     case "5":
-                        Console.WriteLine("Logging out\n");
+                        Console.WriteLine("--------------\nLogging out\n");
                         LoggedIn = false;
                         break;
                 }
@@ -46,11 +61,16 @@ namespace BankLedger
             return null;
         }
 
+        /*
+        ProcessDeposit()
+        Requests and handles input from the user when initiating a deposit.
+        Makes call to the User.MakeDeposit() function once input is considered a valid amount.
+         */
         private void ProcessDeposit(){
             Double Amount;
             bool ValidAmount =false;
             while(!ValidAmount){
-                Console.Write("How much money would you like to deposit?\n>");
+                Console.Write("--------------\nHow much money would you like to deposit?\n>");
                 String Input = Console.ReadLine();
                 if (!String.IsNullOrEmpty(Input)){
                     Amount = Convert.ToDouble(Input);
@@ -58,16 +78,21 @@ namespace BankLedger
                     ValidAmount = true;
                     this.User.MakeDeposit(Amount);
                 }else{
-                    Console.Write("Enter valid amount.\n");
+                    Console.Write("--------------\nEnter valid amount.\n");
                 }
             }
         }
-
+        
+        /*
+        ProcessWithdrawal()
+        Requests and handles input from the user when initiating a withdrawal.
+        Makes call to the User.MakeWithdrawl() function once input is considered a valid amount.
+         */
         private void ProcessWithdrawal(){
             Double Amount;
             bool ValidAmount =false;
             while(!ValidAmount){
-                Console.Write("How much money would you like to withdraw?\n>");
+                Console.Write("--------------\nHow much money would you like to withdraw?\n>");
                 String Input = Console.ReadLine();
                 if (!String.IsNullOrEmpty(Input)){
                     Amount = Convert.ToDouble(Input);
@@ -75,22 +100,9 @@ namespace BankLedger
                     ValidAmount = true;
                     this.User.MakeWithdrawal(Amount);
                 }else{
-                    Console.Write("Enter valid amount.\n");
+                    Console.Write("--------------\nEnter valid amount.\n");
                 }
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }
